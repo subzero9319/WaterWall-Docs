@@ -49,9 +49,9 @@ check_dependencies() {
 	done
 }
 
-# Check and nstall waterwall
-install_waterwall() {
-	LATEST_RELEASE=$(curl --silent "https://api.github.com/repos/radkesvat/WaterWall/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
+# Check and nstall Waterwall
+install_Waterwall() {
+	LATEST_RELEASE=$(curl --silent "https://api.github.com/repos/radkesvat/Waterwall/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
 	INSTALL_DIR="/root/Waterwall"
 	FILE_NAME="Waterwall"
 
@@ -72,9 +72,9 @@ install_waterwall() {
 		# Determine the download URL based on the architecture
 		ARCH=$(uname -m)
 		if [ "$ARCH" == "x86_64" ]; then
-			DOWNLOAD_URL="https://github.com/radkesvat/WaterWall/releases/download/${LATEST_RELEASE}/Waterwall-linux-clang-x64.zip"
+			DOWNLOAD_URL="https://github.com/radkesvat/Waterwall/releases/download/${LATEST_RELEASE}/Waterwall-linux-clang-x64.zip"
 		elif [ "$ARCH" == "aarch64" ]; then
-			DOWNLOAD_URL="https://github.com/radkesvat/WaterWall/releases/download/${LATEST_RELEASE}/Waterwall-linux-arm64.zip"
+			DOWNLOAD_URL="https://github.com/radkesvat/Waterwall/releases/download/${LATEST_RELEASE}/Waterwall-linux-arm64.zip"
 		else
 			echo -e "${red}Unsupported architecture: $ARCH${rest}"
 			return 1
@@ -413,7 +413,7 @@ simple_direct() {
 			min_un=${min_un:-1}
 		fi
 
-		install_waterwall
+		install_Waterwall
 
 		if [ "$PreConnect" == "no" ]; then
 			output="output"
@@ -482,7 +482,7 @@ EOF
 			min_un=${min_un:-1}
 		fi
 
-		install_waterwall
+		install_Waterwall
 
 		if [ "$PreConnect" == "no" ]; then
 			output="output"
@@ -549,7 +549,7 @@ EOF
 			min_un=${min_un:-1}
 		fi
 
-		install_waterwall
+		install_Waterwall
 
 		if [ "$PreConnect" == "no" ]; then
 			output="output"
@@ -626,7 +626,7 @@ EOF
 			return 1
 		fi
 
-		install_waterwall
+		install_Waterwall
 
 		cat <<EOF >/root/Waterwall/config.json
 {
@@ -682,19 +682,19 @@ EOF
 	case $choice in
 	1)
 		create_simple_port_to_port
-		waterwall_service
+		Waterwall_service
 		;;
 	2)
 		create_simple_multiport_to_port
-		waterwall_service
+		Waterwall_service
 		;;
 	3)
 		create_simple_multiport
-		waterwall_service
+		Waterwall_service
 		;;
 	4)
 		create_simple_port_to_port_x2
-		waterwall_service
+		Waterwall_service
 		;;
 	0)
 		main
@@ -743,7 +743,7 @@ tls() {
 			output="pbclient"
 		fi
 
-		install_waterwall
+		install_Waterwall
 
 		json=$(
 			cat <<EOF
@@ -856,7 +856,7 @@ EOF
 			output="output"
 		fi
 
-		install_waterwall
+		install_Waterwall
 
 		json=$(
 			cat <<EOF
@@ -971,7 +971,7 @@ EOF
 			output="pbclient"
 		fi
 
-		install_waterwall
+		install_Waterwall
 
 		json=$(
 			cat <<EOF
@@ -1091,7 +1091,7 @@ EOF
 			output="port_header"
 		fi
 
-		install_waterwall
+		install_Waterwall
 
 		json=$(
 			cat <<EOF
@@ -1194,19 +1194,19 @@ EOF
 	case $choice in
 	1)
 		create_tls_port_to_port_iran
-		waterwall_service
+		Waterwall_service
 		;;
 	2)
 		create_tls_port_to_port_kharej
-		waterwall_service
+		Waterwall_service
 		;;
 	3)
 		create_tls_multi_port_iran
-		waterwall_service
+		Waterwall_service
 		;;
 	4)
 		create_tls_multi_port_kharej
-		waterwall_service
+		Waterwall_service
 		;;
 	0)
 		main
@@ -1230,7 +1230,7 @@ reverse() {
 		echo -en "${green}Enter the remote (${yellow}Connection${green}) port: ${rest}"
 		read -r remote_port
 
-		install_waterwall
+		install_Waterwall
 
 		json=$(
 			cat <<EOF
@@ -1301,7 +1301,7 @@ EOF
 		read -r min_un
 		min_un=${min_un:-16}
 
-		install_waterwall
+		install_Waterwall
 
 		json=$(
 			cat <<EOF
@@ -1368,7 +1368,7 @@ EOF
 		echo -en "${green}Enter the remote port: ${rest}"
 		read -r remote_port
 
-		install_waterwall
+		install_Waterwall
 
 		json=$(
 			cat <<EOF
@@ -1479,7 +1479,7 @@ EOF
 		read -r min_un
 		min_un=${min_un:-16}
 
-		install_waterwall
+		install_Waterwall
 
 		json=$(
 			cat <<EOF
@@ -1585,19 +1585,19 @@ EOF
 	case $choice in
 	1)
 		create_reverse_tls_iran
-		waterwall_service
+		Waterwall_service
 		;;
 	2)
 		create_reverse_tls_kharej
-		waterwall_service
+		Waterwall_service
 		;;
 	3)
 		create_reverse_tls_h2_multi_iran
-		waterwall_service
+		Waterwall_service
 		;;
 	4)
 		create_reverse_tls_h2_multi_kharej
-		waterwall_service
+		Waterwall_service
 		;;
 	0)
 		main
@@ -1624,7 +1624,7 @@ direct_reality() {
 		echo -en "${green}Enter a password (${yellow}same password on both servers${green}): ${rest}"
 		read -r passwd
 
-		install_waterwall
+		install_Waterwall
 
 		json=$(
 			cat <<EOF
@@ -1685,7 +1685,7 @@ EOF
 		echo -en "${green}Enter SNI (${yellow}Example: google.com${green}): ${rest}"
 		read -r sni
 
-		install_waterwall
+		install_Waterwall
 
 		json=$(
 			cat <<EOF
@@ -1757,11 +1757,11 @@ EOF
 	case $choice in
 	1)
 		create_reality_client_multiport_iran
-		waterwall_service
+		Waterwall_service
 		;;
 	2)
 		create_reality_client_multiport_kharej
-		waterwall_service
+		Waterwall_service
 		;;
 	0)
 		main
@@ -1788,7 +1788,7 @@ reality_reverse() {
 		echo -en "${green}Enter a password (${yellow}same password on both servers${green}): ${rest}"
 		read -r passwd
 
-		install_waterwall
+		install_Waterwall
 
 		json=$(
 			cat <<EOF
@@ -1885,7 +1885,7 @@ EOF
 		read -r min_un
 		min_un=${min_un:-16}
 
-		install_waterwall
+		install_Waterwall
 
 		json=$(
 			cat <<EOF
@@ -1971,11 +1971,11 @@ EOF
 	case $choice in
 	1)
 		create_reverse_reality_server_multiport_iran
-		waterwall_service
+		Waterwall_service
 		;;
 	2)
 		create_reverse_reality_client_multiport_kharej
-		waterwall_service
+		Waterwall_service
 		;;
 	0)
 		main
@@ -2000,7 +2000,7 @@ bgp4() {
 		read -r remote_port
 		remote_port=${remote_port:-179}
 
-		install_waterwall
+		install_Waterwall
 
 		json=$(
 			cat <<EOF
@@ -2047,7 +2047,7 @@ EOF
 		echo -en "${green}Enter the remote (${yellow}Server Config ${green}) port: ${rest}"
 		read -r remote_port
 
-		install_waterwall
+		install_Waterwall
 
 		json=$(
 			cat <<EOF
@@ -2098,7 +2098,7 @@ EOF
 		read -r remote_port
 		remote_port=${remote_port:-179}
 
-		install_waterwall
+		install_Waterwall
 
 		json=$(
 			cat <<EOF
@@ -2151,7 +2151,7 @@ EOF
 		read -r local_port
 		local_port=${local_port:-179}
 
-		install_waterwall
+		install_Waterwall
 
 		json=$(
 			cat <<EOF
@@ -2214,19 +2214,19 @@ EOF
 	case $choice in
 	1)
 		create_bgp4_iran
-		waterwall_service
+		Waterwall_service
 		;;
 	2)
 		create_bgp4_kharej
-		waterwall_service
+		Waterwall_service
 		;;
 	3)
 		create_bgp4_multiport_iran
-		waterwall_service
+		Waterwall_service
 		;;
 	4)
 		create_bgp4_multiport_kharej
-		waterwall_service
+		Waterwall_service
 		;;
 	0)
 		main
@@ -2272,7 +2272,7 @@ trojan_config() {
 			trojan_fall=${trojan_fall:-httpforever.com}
 
 			# Install Waterwall
-			install_waterwall
+			install_Waterwall
 
 			# Trojan configuration JSON
 			json=$(
@@ -2513,7 +2513,7 @@ reverse_cdn() {
 		echo -en "${green}Enter the local port: ${rest}"
 		read -r local_port
 
-		install_waterwall
+		install_Waterwall
 
 		json=$(
 			cat <<EOF
@@ -2636,7 +2636,7 @@ EOF
 		echo -en "${green}Enter the local (${yellow}Config${green}) port: ${rest}"
 		read -r local_port
 
-		install_waterwall
+		install_Waterwall
 
 		json=$(
 			cat <<EOF
@@ -2723,7 +2723,7 @@ EOF
 		echo -en "${green}Enter your remote domain: ${rest}"
 		read -r domain
 
-		install_waterwall
+		install_Waterwall
 
 		json=$(
 			cat <<EOF
@@ -2820,7 +2820,7 @@ EOF
 		echo -en "${green}Enter the ending local port [${yellow}less than 65535${green}]: ${rest}"
 		read -r end_port
 
-		install_waterwall
+		install_Waterwall
 
 		json=$(
 			cat <<EOF
@@ -2951,7 +2951,7 @@ EOF
 		echo -en "${green}Enter the ending local port [${yellow}less than 65535${green}]: ${rest}"
 		read -r end_port
 
-		install_waterwall
+		install_Waterwall
 
 		json=$(
 			cat <<EOF
@@ -3086,7 +3086,7 @@ EOF
 		echo -en "${green}Enter your remote domain: ${rest}"
 		read -r domain
 
-		install_waterwall
+		install_Waterwall
 
 		json=$(
 			cat <<EOF
@@ -3200,27 +3200,27 @@ EOF
 	case $choice in
 	1)
 		create_reverse_tls_grpc_singleport_iran
-		waterwall_service
+		Waterwall_service
 		;;
 	2)
 		create_reverse_tls_grpc_singleport_kharej
-		waterwall_service
+		Waterwall_service
 		;;
 	3)
 		create_reverse_tls_grpc_multiport_iran
-		waterwall_service
+		Waterwall_service
 		;;
 	4)
 		create_reverse_tls_grpc_multiport_kharej
-		waterwall_service
+		Waterwall_service
 		;;
 	5)
 		create_reverse_tls_grpc_multiport_hd_iran
-		waterwall_service
+		Waterwall_service
 		;;
 	6)
 		create_reverse_tls_grpc_multiport_hd_kharej
-		waterwall_service
+		Waterwall_service
 		;;
 	0)
 		main
@@ -3283,7 +3283,7 @@ reset_tunnel() {
 		read -r remote_address
 		ufw
 		reset_iptables
-		install_waterwall
+		install_Waterwall
 
 		json=$(
 			cat <<EOF
@@ -3435,7 +3435,7 @@ EOF
 		ufw
 		reset_iptables
 
-		install_waterwall
+		install_Waterwall
 
 		json=$(
 			cat <<EOF
@@ -3569,11 +3569,11 @@ EOF
 	case $choice in
 	1)
 		create_reset_tunnel_iran
-		waterwall_service
+		Waterwall_service
 		;;
 	2)
 		create_reset_tunnel_kharej
-		waterwall_service
+		Waterwall_service
 		;;
 	3)
 		reset_iptables
@@ -3612,7 +3612,7 @@ custom() {
 	# Read JSON input from user
 	json_input=$(cat)
 
-	install_waterwall
+	install_Waterwall
 
 	# Validate if JSON input is not empty
 	if [ -z "$json_input" ]; then
@@ -3630,12 +3630,12 @@ custom() {
 	fi
 	echo ""
 
-	waterwall_service
+	Waterwall_service
 }
 #===================================
 
 # Uninstall Waterwall
-uninstall_waterwall() {
+uninstall_Waterwall() {
 	if [ -f ~/Waterwall/config.json ] || [ -f /etc/systemd/system/Waterwall.service ]; then
 		echo -e "${cyan}==============================================${rest}"
 		echo -en "${green}Press Enter to continue, or Ctrl+C to cancel.${rest}"
@@ -3672,7 +3672,7 @@ uninstall_waterwall() {
 #===================================
 
 # Create Service
-waterwall_service() {
+Waterwall_service() {
 	create_core_json
 	# Create a new service
 	cat <<EOL >/etc/systemd/system/Waterwall.service
@@ -3694,7 +3694,7 @@ EOL
 	# Reload systemctl daemon and start the service
 	sudo systemctl daemon-reload
 	sudo systemctl restart Waterwall.service >/dev/null 2>&1
-	check_waterwall_status
+	check_Waterwall_status
 }
 #===================================
 
@@ -3744,7 +3744,7 @@ check_tunnel_status() {
 }
 #===================================
 # Check Waterwall status
-check_waterwall_status() {
+check_Waterwall_status() {
 	sleep 1
 	# Check the status of the tunnel service
 	if sudo systemctl is-active --quiet Waterwall.service; then
@@ -3776,7 +3776,7 @@ main() {
 	check_tunnel_status
 	check_trojan_status
 	echo -e "${yellow}***********************************${rest}"
-	echo -e "${yellow}*${green} github.com/${cyan}radkesvat${green}/WaterWall ${yellow} *${rest}"
+	echo -e "${yellow}*${green} github.com/${cyan}radkesvat${green}/Waterwall ${yellow} *${rest}"
 	echo -e "${yellow}***********************************${rest}"
 	echo -e "${yellow}*${green} [${cyan}1${green}] Simple Tunnel ${yellow}              *${rest}"
 	echo -e "${yellow}*                                 *${rest}"
@@ -3850,7 +3850,7 @@ main() {
 		ssl_cert_issue_main
 		;;
 	12)
-		uninstall_waterwall
+		uninstall_Waterwall
 		;;
 	0)
 		echo -e "${cyan}good bye 🖐${rest}"
